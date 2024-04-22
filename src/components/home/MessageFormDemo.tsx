@@ -4,6 +4,7 @@ import React from "react";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { Label } from "../ui/label";
+import { Textarea } from "../ui/textArea";
 
 export function MessageFormDemo() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,31 +22,14 @@ export function MessageFormDemo() {
       </p>
 
       <form className="my-8" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <LabelInputContainer>
-            <Label htmlFor="firstname">First name</Label>
-            <Input id="firstname" placeholder="Tyler" type="text" />
-          </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
-            <Input id="lastname" placeholder="Durden" type="text" />
-          </LabelInputContainer>
-        </div>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Label htmlFor="subject">Subject</Label>
+          <Input id="subject" placeholder="Enter subject" type="text" />
         </LabelInputContainer>
+
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
-          <Label htmlFor="twitterpassword">Your twitter password</Label>
-          <Input
-            id="twitterpassword"
-            placeholder="••••••••"
-            type="twitterpassword"
-          />
+          <Label htmlFor="subject">Message</Label>
+          <Textarea id="message" placeholder="Enter your message" type="text" />
         </LabelInputContainer>
 
         <button
