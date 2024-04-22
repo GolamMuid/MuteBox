@@ -1,113 +1,149 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { MessageFormDemo } from "@/components/home/MessageFormDemo";
+import { SparklesPreview } from "@/components/home/SparklesPreview";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+const Page = () => {
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubjectChange = (e: any) => {
+    setSubject(e.target.value);
+  };
+
+  const handleMessageChange = (e: any) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("Subject:", subject);
+    console.log("Message:", message);
+    setSubject("");
+    setMessage("");
+  };
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <section className="bg-white relative ">
+      <div className="h-screen overflow-hidden ">
+        <div className="h-full w-full  p-[1vh]">
+          <div className="h-[90vh] ">
+            <div className="flex h-full w-full">
+              <div className="w-4/12  flex justify-center items-center">
+                <SparklesPreview />
+              </div>
+              <div className="w-8/12  p-[1vh] flex items-center justify-center">
+                <form onSubmit={handleSubmit} className=" w-8/12">
+                  <div className="mb-4">
+                    <label
+                      htmlFor="subject"
+                      className="block text-gray-700 font-bold mb-2"
+                    >
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      value={subject}
+                      onChange={handleSubjectChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      placeholder="Enter subject"
+                    />
+                  </div>
+                  <div className="mb-6">
+                    <label
+                      htmlFor="message"
+                      className="block text-gray-700 font-bold mb-2"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      value={message}
+                      onChange={handleMessageChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
+                      placeholder="Enter your message"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Send
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div className="h-[10vh]  flex justify-center items-center gap-4">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src="/next.svg"
+              width={20}
+              height={80}
+              className="max-h-[40px] w-auto"
+              alt="news"
             />
-          </a>
+            <div className="text-start">
+              © {currentYear} &nbsp;
+              <Link
+                href="https://www.creativematter.agency/"
+                target="_blank"
+                className="hover:underline cursor-pointer"
+              >
+                Creative Matter
+              </Link>
+              . All rights reserved. <br />
+              Trade marks are owned by or licensed to the
+              <Link
+                href="https://www.atilimited.net/"
+                target="_blank"
+                className="hover:underline cursor-pointer"
+              >
+                ATI Limited.
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </section>
   );
-}
+};
+
+export default Page;
+
+// "use client";
+
+// const Page = () => {
+//   const x = "-38vh";
+
+//   return (
+//     <section className="bg-[#E4E4E4] relative ">
+//       <div className="h-screen overflow-hidden border-2 border-red-600">
+//         <div className="flex h-full w-full uppercase max-lg:relative border-2 border-green-600">
+//           <div className="h-full w-7/12 max-lg:w-full flex justify-end items-center relative border-2 border-sky-600 ">
+//             <div className="absolute border-[1vh] border-[#E4E4E4] h-full">
+//               this is page
+//             </div>
+//           </div>
+
+//           <div className="h-full w-5/12 border-2 border-red-600">
+//             <div className="h-[6vh]"></div>
+//             <div className="h-[49vh]">
+//               <div className="h-[30vh] overflow-hidden -ml-[6vh] max-lg:ml-[2vh] max-lg:h-[36vh]"></div>
+//               <div className="h-[29vh] ml-[17vh] mt-[5vh] max-lg:mt-[2vh]"></div>
+//             </div>
+//           </div>
+//         </div>
+//         <div>ati limited</div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Page;
