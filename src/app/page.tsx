@@ -38,7 +38,8 @@ const Page = () => {
                 <SparklesPreview />
               </div>
               <div className="w-8/12  p-[1vh] flex items-center justify-center">
-                <form onSubmit={handleSubmit} className=" w-8/12">
+                <MessageFormDemo />
+                {/* <form onSubmit={handleSubmit} className=" w-8/12">
                   <div className="mb-4">
                     <label
                       htmlFor="subject"
@@ -76,7 +77,7 @@ const Page = () => {
                   >
                     Send
                   </button>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>
