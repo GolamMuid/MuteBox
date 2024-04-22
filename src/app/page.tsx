@@ -34,11 +34,12 @@ const Page = () => {
         <div className="h-full w-full  p-[1vh]">
           <div className="h-[90vh] ">
             <div className="flex h-full w-full">
-              <div className="w-4/12  flex justify-center items-center">
+              <div className="w-5/12  flex justify-center items-center">
                 <SparklesPreview />
               </div>
-              <div className="w-8/12  p-[1vh] flex items-center justify-center">
+              <div className="w-7/12  p-[1vh] flex items-center justify-center">
                 <MessageFormDemo />
+
                 {/* <form onSubmit={handleSubmit} className=" w-8/12">
                   <div className="mb-4">
                     <label
