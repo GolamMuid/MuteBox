@@ -1,6 +1,5 @@
 import { SparklesPreview } from "@/components/home/SparklesPreview";
-import { LoginForm } from "@/components/login/LoginForm";
-import React from "react";
+import { PasswordForm } from "@/components/login/PasswordForm";
 
 const page = () => {
   return (
@@ -12,7 +11,7 @@ const page = () => {
               <SparklesPreview />
             </div>
             <div className="w-6/12 max-lg:w-full  p-[1vh] flex items-center justify-center ">
-              <LoginForm />
+              <PasswordForm />
             </div>
           </div>
         </div>
