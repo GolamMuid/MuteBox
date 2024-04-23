@@ -31,39 +31,6 @@ export async function POST(request: NextRequest) {
 	}
 }
 
-// export async function GET(request: NextRequest) {
-// 	try {
-// 		// const token = request.headers.get("Authorization")?.substring(7);
-// 		// const tokenWithoutBearer = token?.substring(7);
-
-// 		// const cookies = request.cookies;
-// 		// const token = cookies && cookies["token"];
-
-// 		const token = request.cookies && request.cookies["token"];
-
-// 		console.log(request.cookies);
-
-// 		if (!token) {
-// 			return NextResponse.json({ error: "Token is missing" }, { status: 401 });
-// 		}
-
-// 		const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-
-// 		console.log("decodedToken", decodedToken);
-// 		console.log("token", token);
-
-// 		if (!decodedToken || !decodedToken.userId) {
-// 			return NextResponse.json({ error: "Invalid token" }, { status: 401 });
-// 		}
-
-// 		// ? Token is valid, proceed to fetch posts
-// 		const posts = await Post.find({});
-// 		return NextResponse.json(posts);
-// 	} catch (error: any) {
-// 		return NextResponse.json({ error: error.message }, { status: 500 });
-// 	}
-// }
-
 export async function GET(request: NextRequest) {
 	try {
 		const cookies = request.cookies as any; // Type assertion
