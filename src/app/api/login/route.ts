@@ -33,15 +33,33 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		// ? Generate JWT token
-		// const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-		// 	expiresIn: "1h",
-		// });
+		// ? Verify token if JWT_SECRET is defined
 
-		return NextResponse.json({
+		if (!process.env.JWT_SECRET) {
+			throw new Error("JWT_SECRET is not defined");
+		}
+
+		// ? Generate JWT token
+
+		const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+			expiresIn: "1h",
+		});
+
+		const response = NextResponse.json({
 			message: "login successfully",
 			success: true,
 		});
+		response.cookies.set("token", token, {
+			httpOnly: true,
+		});
+
+		return response;
+
+		// return NextResponse.json({
+		// 	message: "login successfully",
+		// 	success: true,
+		// 	token,
+		// });
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });
 	}
