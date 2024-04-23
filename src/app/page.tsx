@@ -30,60 +30,20 @@ const Page = () => {
 
   return (
     <section className="bg-white relative ">
-      <div className="h-screen overflow-hidden ">
+      <div className="h-screen lg:overflow-hidden ">
         <div className="h-full w-full  p-[1vh]">
-          <div className="h-[90vh] ">
-            <div className="flex h-full w-full">
-              <div className="w-5/12  flex justify-center items-center">
+          <div className="lg:h-[90vh] max-lg:mb-24">
+            <div className="flex max-lg:flex-col h-full w-full">
+              <div className="w-6/12 max-lg:w-full flex justify-center items-center">
                 <SparklesPreview />
               </div>
-              <div className="w-7/12  p-[1vh] flex items-center justify-center">
+              <div className="w-6/12 max-lg:w-full  p-[1vh] flex items-center justify-center">
                 <MessageFormDemo />
-
-                {/* <form onSubmit={handleSubmit} className=" w-8/12">
-                  <div className="mb-4">
-                    <label
-                      htmlFor="subject"
-                      className="block text-gray-700 font-bold mb-2"
-                    >
-                      Subject check
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      value={subject}
-                      onChange={handleSubjectChange}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      placeholder="Enter subject"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label
-                      htmlFor="message"
-                      className="block text-gray-700 font-bold mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      value={message}
-                      onChange={handleMessageChange}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none"
-                      placeholder="Enter your message"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Send
-                  </button>
-                </form> */}
               </div>
             </div>
           </div>
 
-          <div className="h-[10vh]  flex justify-center items-center gap-4">
+          <div className="lg:h-[10vh]   flex justify-center items-center gap-4">
             <Image
               src="/next.svg"
               width={20}
@@ -118,34 +78,3 @@ const Page = () => {
 };
 
 export default Page;
-
-// "use client";
-
-// const Page = () => {
-//   const x = "-38vh";
-
-//   return (
-//     <section className="bg-[#E4E4E4] relative ">
-//       <div className="h-screen overflow-hidden border-2 border-red-600">
-//         <div className="flex h-full w-full uppercase max-lg:relative border-2 border-green-600">
-//           <div className="h-full w-7/12 max-lg:w-full flex justify-end items-center relative border-2 border-sky-600 ">
-//             <div className="absolute border-[1vh] border-[#E4E4E4] h-full">
-//               this is page
-//             </div>
-//           </div>
-
-//           <div className="h-full w-5/12 border-2 border-red-600">
-//             <div className="h-[6vh]"></div>
-//             <div className="h-[49vh]">
-//               <div className="h-[30vh] overflow-hidden -ml-[6vh] max-lg:ml-[2vh] max-lg:h-[36vh]"></div>
-//               <div className="h-[29vh] ml-[17vh] mt-[5vh] max-lg:mt-[2vh]"></div>
-//             </div>
-//           </div>
-//         </div>
-//         <div>ati limited</div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Page;
