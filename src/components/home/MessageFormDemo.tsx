@@ -13,13 +13,13 @@ export function MessageFormDemo() {
     console.log("Form submitted");
   };
   return (
-    <BackgroundGradient className="rounded-[22px] max-lg:w-full  sm:p-10 bg-white dark:bg-zinc-900 ">
-      <div className="max-w-lg w-full mx-auto rounded-3xl md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+    <BackgroundGradient className="rounded-[22px]  sm:p-10 bg-white dark:bg-zinc-900 w-full">
+      <div className="  mx-auto rounded-3xl md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 uppercase">
           Share your concerns anonymously
         </h2>
 
-        <form className="my-8" onSubmit={handleSubmit}>
+        <form className="my-8 " onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="subject">Subject</Label>
             <Input id="subject" placeholder="Enter subject" type="text" />

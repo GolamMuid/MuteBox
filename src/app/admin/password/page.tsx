@@ -1,4 +1,4 @@
-import { SparklesPreview } from "@/components/home/SparklesPreview";
+import { SparklesPreviewLogin } from "@/components/home/SparklesPreviewLogin";
 import { PasswordForm } from "@/components/login/PasswordForm";
 
 const page = () => {
@@ -7,10 +7,10 @@ const page = () => {
       <div className="h-screen lg:overflow-hidden ">
         <div className="h-full w-full  p-[1vh] container">
           <div className="flex max-lg:flex-col h-full w-full">
-            <div className="w-6/12 max-lg:w-full flex justify-center items-center">
-              <SparklesPreview />
+            <div className="w-5/12 max-lg:w-full flex justify-center items-center">
+              <SparklesPreviewLogin />
             </div>
-            <div className="w-6/12 max-lg:w-full  p-[1vh] flex items-center justify-center ">
+            <div className="w-7/12 max-lg:w-full  p-[1vh] flex items-center justify-center ">
               <PasswordForm />
             </div>
           </div>

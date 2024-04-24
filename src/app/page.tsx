@@ -34,10 +34,10 @@ const Page = () => {
         <div className="h-full w-full  p-[1vh]">
           <div className="lg:h-[90vh] max-lg:mb-24">
             <div className="flex max-lg:flex-col h-full w-full">
-              <div className="w-6/12 max-lg:w-full flex justify-center items-center">
+              <div className="w-6/12 max-lg:w-full flex justify-center items-center ">
                 <SparklesPreview />
               </div>
-              <div className="w-6/12 max-lg:w-full  p-[1vh] flex items-center justify-center">
+              <div className="w-6/12 max-lg:w-full  p-[1vh] lg:px-12 flex items-center justify-center ">
                 <MessageFormDemo />
               </div>
             </div>
@@ -61,7 +61,7 @@ const Page = () => {
                 Creative Matter
               </Link>
               . All rights reserved. <br />
-              Trade marks are owned by or licensed to the
+              Trade marks are owned by or licensed to the &nbsp;
               <Link
                 href="https://www.atilimited.net/"
                 target="_blank"
