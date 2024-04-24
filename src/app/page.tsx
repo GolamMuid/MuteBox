@@ -1,31 +1,11 @@
 "use client";
 
-import { MessageFormDemo } from "@/components/home/MessageFormDemo";
+import { MessageForm } from "@/components/home/MessageForm";
 import { SparklesPreview } from "@/components/home/SparklesPreview";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const Page = () => {
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleSubjectChange = (e: any) => {
-    setSubject(e.target.value);
-  };
-
-  const handleMessageChange = (e: any) => {
-    setMessage(e.target.value);
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Subject:", subject);
-    console.log("Message:", message);
-    setSubject("");
-    setMessage("");
-  };
-
   const currentYear = new Date().getFullYear();
 
   return (
@@ -38,7 +18,7 @@ const Page = () => {
                 <SparklesPreview />
               </div>
               <div className="w-6/12 max-lg:w-full  p-[1vh] lg:px-12 flex items-center justify-center ">
-                <MessageFormDemo />
+                <MessageForm />
               </div>
             </div>
           </div>

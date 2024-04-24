@@ -10,7 +10,7 @@ const page = () => {
             <div className="w-5/12 max-lg:w-full flex justify-center items-center">
               <SparklesPreviewLogin />
             </div>
-            <div className="w-7/12 max-lg:w-full  p-[1vh] flex items-center justify-center ">
+            <div className="w-7/12 max-lg:w-full  p-[1vh] flex items-center justify-center lg:mx-24">
               <PasswordForm />
             </div>
           </div>
