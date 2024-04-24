@@ -11,6 +11,7 @@ export async function GET() {
 			success: true,
 		});
 		response.cookies.set("token", "", { httpOnly: true });
+		return response;
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });
 	}
