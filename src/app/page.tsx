@@ -23,16 +23,16 @@ const Page = () => {
 						</div>
 					</div>
 
-					<div className="lg:h-[10vh]   flex justify-center items-center gap-4">
+					<div className="lg:h-[10vh] flex justify-center items-center gap-4">
 						<Image
-							src="/ATI Limited 1.png"
+							src="/cm1.png"
 							width={80}
 							height={20}
 							className="max-h-[80px] w-auto"
-							alt="news"
+							alt="Creative Matter"
 						/>
 						<div className="text-start">
-							© {currentYear} &nbsp;
+							© {currentYear} designed and developed by&nbsp;
 							<Link
 								href="https://www.creativematter.agency/"
 								target="_blank"
@@ -40,14 +40,14 @@ const Page = () => {
 							>
 								Creative Matter
 							</Link>
-							. All rights reserved. <br />
-							Trade marks are owned by or licensed to the &nbsp;
+							{/* . All rights reserved. <br />
+							Trade marks are owned by or licensed to the &nbsp; */}
 							<Link
 								href="https://www.atilimited.net/"
 								target="_blank"
 								className="hover:underline cursor-pointer"
 							>
-								ATI Limited.
+								{/* ATI Limited. */}
 							</Link>
 						</div>
 					</div>
