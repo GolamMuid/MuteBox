@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 import "react-toastify/dist/ReactToastify.css";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 interface ILoginInput {
   username: string;
@@ -17,7 +18,12 @@ interface ILoginInput {
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>();
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const {
     register,
@@ -92,28 +98,43 @@ export function LoginForm() {
               </p>
             )}
           </LabelInputContainer>
+
           <LabelInputContainer className="mb-4">
             <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              placeholder="••••••••"
-              type="password"
-              {...register("password", {
-                required: true,
-                minLength: 5,
-              })}
-            />
-            {errors?.password?.type === "required" && (
-              <span className="text-xs text-red-700">
-                Please provide a Password
-              </span>
-            )}
+            <div className="relative">
+              <Input
+                id="password"
+                placeholder="••••••••"
+                type={showPassword ? "text" : "password"}
+                {...register("password", {
+                  required: true,
+                  minLength: 5,
+                })}
+              />
+              {errors?.password?.type === "required" && (
+                <span className="text-xs text-red-700">
+                  Please provide a Password
+                </span>
+              )}
 
-            {errors?.username?.type === "minLength" && (
-              <p className="text-xs text-red-700">
-                Password must be at least 5 characters long
-              </p>
-            )}
+              {errors?.username?.type === "minLength" && (
+                <p className="text-xs text-red-700">
+                  Password must be at least 5 characters long
+                </p>
+              )}
+
+              <button
+                type="button"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <IoMdEyeOff className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <IoMdEye className="h-5 w-5 text-gray-400" />
+                )}
+              </button>
+            </div>
           </LabelInputContainer>
 
           <button

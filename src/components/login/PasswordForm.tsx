@@ -8,6 +8,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { SyncLoader } from "react-spinners";
+import { useRouter } from "next/navigation";
+import { IoMdEyeOff } from "react-icons/io";
+import { IoMdEye } from "react-icons/io";
 
 interface IPasswordInput {
   oldPassword: string;
@@ -16,6 +20,16 @@ interface IPasswordInput {
 
 export function PasswordForm() {
   const [isLoading, setIsLoading] = useState<boolean>();
+  const [showOldPassword, setShowOldPassword] = useState<boolean>(false);
+  const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
+  const router = useRouter();
+
+  const toggleOldPasswordVisibility = () => {
+    setShowOldPassword(!showOldPassword);
+  };
+  const toggleNewPasswordVisibility = () => {
+    setShowNewPassword(!showNewPassword);
+  };
 
   const {
     register,
@@ -41,16 +55,7 @@ export function PasswordForm() {
         console.log("password", data);
 
         if (data.success === true) {
-          toast.success("Password change successfully!", {
-            position: "top-left",
-            autoClose: 3001,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          router.push("/admin");
           reset();
         } else {
           toast.error(data.error, {
@@ -78,56 +83,87 @@ export function PasswordForm() {
         <form className="my-8 w-full" onSubmit={handleSubmit(onSubmit)}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="currentPassword">Current Password</Label>
-            <Input
-              id="current password"
-              placeholder="current password"
-              type="password"
-              {...register("oldPassword", {
-                required: true,
-                minLength: 5,
-              })}
-            />
-            {errors?.oldPassword?.type === "required" && (
-              <span className="text-xs text-red-700">
-                Please provide your old password
-              </span>
-            )}
+            <div className="relative">
+              <Input
+                id="current password"
+                placeholder="current password"
+                type={showOldPassword ? "text" : "password"}
+                {...register("oldPassword", {
+                  required: true,
+                  minLength: 5,
+                })}
+              />
+              {errors?.oldPassword?.type === "required" && (
+                <span className="text-xs text-red-700">
+                  Please provide your old password
+                </span>
+              )}
 
-            {errors?.oldPassword?.type === "minLength" && (
-              <p className="text-xs text-red-700">
-                Password must be at least 5 characters long
-              </p>
-            )}
+              {errors?.oldPassword?.type === "minLength" && (
+                <p className="text-xs text-red-700">
+                  Password must be at least 5 characters long
+                </p>
+              )}
+              <button
+                type="button"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2"
+                onClick={toggleOldPasswordVisibility}
+              >
+                {showOldPassword ? (
+                  <IoMdEyeOff className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <IoMdEye className="h-5 w-5 text-gray-400" />
+                )}
+              </button>
+            </div>
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="new password">New Password</Label>
-            <Input
-              id="new password"
-              placeholder="new password"
-              type="password"
-              {...register("newPassword", {
-                required: true,
-                minLength: 5,
-              })}
-            />
-            {errors?.newPassword?.type === "required" && (
-              <span className="text-xs text-red-700">
-                Please provide your new password
-              </span>
-            )}
+            <div className="relative">
+              <Input
+                id="new password"
+                placeholder="new password"
+                type={showNewPassword ? "text" : "password"}
+                {...register("newPassword", {
+                  required: true,
+                  minLength: 5,
+                })}
+              />
+              {errors?.newPassword?.type === "required" && (
+                <span className="text-xs text-red-700">
+                  Please provide your new password
+                </span>
+              )}
 
-            {errors?.newPassword?.type === "minLength" && (
-              <p className="text-xs text-red-700">
-                Password must be at least 5 characters long
-              </p>
-            )}
+              {errors?.newPassword?.type === "minLength" && (
+                <p className="text-xs text-red-700">
+                  Password must be at least 5 characters long
+                </p>
+              )}
+
+              <button
+                type="button"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2"
+                onClick={toggleNewPasswordVisibility}
+              >
+                {showNewPassword ? (
+                  <IoMdEyeOff className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <IoMdEye className="h-5 w-5 text-gray-400" />
+                )}
+              </button>
+            </div>
           </LabelInputContainer>
 
           <button
             className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] "
             type="submit"
           >
-            Update &rarr;
+            {isLoading ? (
+              <SyncLoader color="#FFFFFF" size={8} />
+            ) : (
+              <div>Update &rarr;</div>
+            )}
             <BottomGradient />
           </button>
           <ToastContainer />
