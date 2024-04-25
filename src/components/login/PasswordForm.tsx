@@ -4,12 +4,70 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { BackgroundGradient } from "../ui/background-gradient";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+
+interface IPasswordInput {
+  oldPassword: string;
+  newPassword: string;
+}
 
 export function PasswordForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted");
+  const [isLoading, setIsLoading] = useState<boolean>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<IPasswordInput>();
+
+  const onSubmit = (data: IPasswordInput) => {
+    console.log("data", data);
+    setIsLoading(true);
+    fetch(`/api/passwordChange`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log("password", data);
+
+        if (data.success === true) {
+          toast.success("Password change successfully!", {
+            position: "top-left",
+            autoClose: 3001,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          reset();
+        } else {
+          toast.error(data.error, {
+            position: "top-left",
+            autoClose: 3001,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
+
   return (
     <BackgroundGradient className="rounded-[22px]  max-lg:w-full  sm:p-10 bg-white dark:bg-zinc-900">
       <div className=" w-full mx-auto rounded-2xl md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
@@ -17,14 +75,29 @@ export function PasswordForm() {
           Change Password
         </h2>
 
-        <form className="my-8 w-full" onSubmit={handleSubmit}>
+        <form className="my-8 w-full" onSubmit={handleSubmit(onSubmit)}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="currentPassword">Current Password</Label>
             <Input
               id="current password"
               placeholder="current password"
               type="password"
+              {...register("oldPassword", {
+                required: true,
+                minLength: 5,
+              })}
             />
+            {errors?.oldPassword?.type === "required" && (
+              <span className="text-xs text-red-700">
+                Please provide your old password
+              </span>
+            )}
+
+            {errors?.oldPassword?.type === "minLength" && (
+              <p className="text-xs text-red-700">
+                Password must be at least 5 characters long
+              </p>
+            )}
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="new password">New Password</Label>
@@ -32,7 +105,22 @@ export function PasswordForm() {
               id="new password"
               placeholder="new password"
               type="password"
+              {...register("newPassword", {
+                required: true,
+                minLength: 5,
+              })}
             />
+            {errors?.newPassword?.type === "required" && (
+              <span className="text-xs text-red-700">
+                Please provide your new password
+              </span>
+            )}
+
+            {errors?.newPassword?.type === "minLength" && (
+              <p className="text-xs text-red-700">
+                Password must be at least 5 characters long
+              </p>
+            )}
           </LabelInputContainer>
 
           <button
@@ -42,6 +130,7 @@ export function PasswordForm() {
             Update &rarr;
             <BottomGradient />
           </button>
+          <ToastContainer />
         </form>
       </div>
     </BackgroundGradient>

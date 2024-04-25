@@ -46,7 +46,6 @@ export function LoginForm() {
           router.push("/admin");
           reset();
         } else {
-          console.log("333 not ok");
           toast.error(data.error, {
             position: "top-left",
             autoClose: 3001,

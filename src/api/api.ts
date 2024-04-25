@@ -10,3 +10,13 @@ export const getALLPost = async (id: string) => {
     console.log(error);
   }
 };
+//? Get logout
+
+export const getLogout = async (id: string) => {
+  try {
+    const response = await axios.get(`/api/logout`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

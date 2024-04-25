@@ -4,15 +4,17 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import moment from "moment";
 
 export const HoverEffect = ({
   items,
   className,
 }: {
   items: {
-    title: string;
-    description: string;
-    link: string;
+    _id: string;
+    subject: string;
+    message: string;
+    createdAt: string;
   }[];
   className?: string;
 }) => {
@@ -25,10 +27,10 @@ export const HoverEffect = ({
         className
       )}
     >
-      {items.map((item, idx) => (
-        <Link
-          href={item?.link}
-          key={item?.link}
+      {items?.map((item, idx) => (
+        <div
+          // href={item?.link}
+          key={item?._id}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -51,10 +53,13 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
+            <CardTitle>
+              {}
+              {moment(item?.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
+            </CardTitle>
+            <CardDescription>{item?.subject}</CardDescription>
           </Card>
-        </Link>
+        </div>
       ))}
     </div>
   );

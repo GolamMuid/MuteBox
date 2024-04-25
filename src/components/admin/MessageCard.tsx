@@ -14,15 +14,7 @@ export function MessageCard() {
 
   return (
     <div className="container mx-auto px-8 mt-16">
-      <HoverEffect items={projects} />
+      <HoverEffect items={data} />
     </div>
   );
 }
-export const projects = [
-  {
-    title: "24 april 2024",
-    description:
-      "A technology company that builds economic infrastructure for the internet.",
-    link: "https://stripe.com",
-  },
-];
