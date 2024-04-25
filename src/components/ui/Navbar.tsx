@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Menu, MenuItem } from "./navbar-menu";
+import { Menu } from "./navbar-menu";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
@@ -43,18 +43,20 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu>
-        <Link
-          href="/admin/password"
-          className="hover:text-sky-700 text-lg font-semibold"
-        >
-          Password change
-        </Link>
-        <button
-          onClick={logoutRequest}
-          className="hover:text-sky-700 text-lg font-semibold"
-        >
-          logout
-        </button>
+        <div className="flex gap-4">
+          <Link
+            href="/admin/password"
+            className="hover:text-sky-700 text-lg font-semibold"
+          >
+            Password Change
+          </Link>
+          <button
+            onClick={logoutRequest}
+            className="hover:text-sky-700 text-lg font-semibold"
+          >
+            Logout
+          </button>
+        </div>
       </Menu>
       <ToastContainer />
     </div>

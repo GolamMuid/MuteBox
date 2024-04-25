@@ -1,39 +1,9 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
-
-const transition = {
-  type: "spring",
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
-  restDelta: 0.001,
-  restSpeed: 0.001,
-};
-
-export const MenuItem = ({
-  item,
-}: {
-  item: string;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <div className="relative ">
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
-      >
-        {item}
-      </motion.p>
-    </div>
-  );
-};
 
 export const Menu = ({ children }: { children: React.ReactNode }) => {
   return (
-    <nav className="relative rounded-full boder border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 ">
+    <nav className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-between space-x-4 px-8 py-4 items-center">
+      <div className="text-3xl font-bold text-sky-800">Mute Box</div>
       {children}
     </nav>
   );
