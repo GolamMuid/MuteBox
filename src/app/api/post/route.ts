@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
 
 			// ? Token is valid, proceed to fetch posts
 
-			const posts = await Post.find({});
+			const posts = await Post.find().sort({ createdAt: -1 });
 			return NextResponse.json(posts);
 		} else {
 			// ? Token cookie is missing
