@@ -2,9 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
 import moment from "moment";
+import { IoMdArrowBack } from "react-icons/io";
 
 export const HoverEffect = ({
   items,
@@ -20,47 +20,90 @@ export const HoverEffect = ({
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const [messageDetails, setMessageDetails] = useState<any>();
+  const [showDetails, setShowDetails] = useState<boolean>(true);
+
+  const handleCardClick = (item: any) => {
+    setMessageDetails(item);
+    setShowDetails(false);
+  };
+  const handleCardClickBack = () => {
+    setShowDetails(true);
+  };
+
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
-        className
-      )}
-    >
-      {items?.map((item, idx) => (
+    <div>
+      {showDetails ? (
         <div
-          // href={item?.link}
-          key={item?._id}
-          className="relative group  block p-2 h-full w-full"
-          onMouseEnter={() => setHoveredIndex(idx)}
-          onMouseLeave={() => setHoveredIndex(null)}
+          className={cn(
+            "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10 ",
+            className
+          )}
         >
-          <AnimatePresence>
-            {hoveredIndex === idx && (
-              <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-400 dark:bg-slate-800/[0.8] block  rounded-3xl"
-                layoutId="hoverBackground"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
-                  transition: { duration: 0.15 },
-                }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 0.15, delay: 0.2 },
-                }}
-              />
-            )}
-          </AnimatePresence>
-          <Card>
-            <CardTitle>
-              {}
-              {moment(item?.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
-            </CardTitle>
-            <CardDescription>{item?.subject}</CardDescription>
-          </Card>
+          {items?.map((item, idx) => (
+            <div
+              // href={item?.link}
+              key={item?._id}
+              className="relative group  block p-2 h-full w-full  cursor-pointer"
+              onMouseEnter={() => setHoveredIndex(idx)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => handleCardClick(item)}
+            >
+              <AnimatePresence>
+                {hoveredIndex === idx && (
+                  <motion.span
+                    className="absolute inset-0 h-full w-full bg-neutral-400 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                    layoutId="hoverBackground"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { duration: 0.15 },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: { duration: 0.15, delay: 0.2 },
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+
+              <Card>
+                <CardTitle className="">
+                  {moment(item?.createdAt).format(" MMM Do YY, h:mm a")}
+                </CardTitle>
+                <CardDescription>{item?.subject}</CardDescription>
+              </Card>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : (
+        <div className="mt-16">
+          <div className="container">
+            <button
+              onClick={handleCardClickBack}
+              className="flex gap-2 justify-center items-center  text-xl font-bold text-sky-800"
+            >
+              <IoMdArrowBack /> back
+            </button>
+            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+              {messageDetails?.subject}
+            </p>
+
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+              <span>
+                {moment(messageDetails?.createdAt).format(" MMMM Do YYYY,")}{" "}
+              </span>
+              <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
+                {moment(messageDetails?.createdAt).format("h:mm a")}
+              </span>
+            </button>
+
+            <p className="text-lg text-neutral-900 dark:text-neutral-400 mt-4">
+              {messageDetails?.message}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -85,6 +128,7 @@ export const Card = ({
     </div>
   );
 };
+
 export const CardTitle = ({
   className,
   children,
@@ -93,26 +137,32 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4 className={cn("text-zinc-200  tracking-wide mt-4", className)}>
       {children}
     </h4>
   );
 };
+
 export const CardDescription = ({
   className,
   children,
 }: {
   className?: string;
-  children: React.ReactNode;
+  // children: React.ReactNode;
+  children: string; // Ensure children is of type string
 }) => {
+  const truncatedText = children.slice(0, 60);
+  const displayText =
+    children.length > 30 ? truncatedText + "..." : truncatedText;
+
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
+        "mt-8 text-zinc-50 tracking-wide leading-relaxed text-lg font-bold",
         className
       )}
     >
-      {children}
+      {displayText}
     </p>
   );
 };

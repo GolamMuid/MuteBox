@@ -10,8 +10,6 @@ export function MessageCard() {
     queryFn: getALLPost,
   });
 
-  console.log("data", data);
-
   return (
     <div className="container mx-auto px-8 mt-16">
       <HoverEffect items={data} />

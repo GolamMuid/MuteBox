@@ -43,8 +43,18 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu>
-        <Link href="/admin/password">Password change</Link>
-        <button onClick={logoutRequest}>logout</button>
+        <Link
+          href="/admin/password"
+          className="hover:text-sky-700 text-lg font-semibold"
+        >
+          Password change
+        </Link>
+        <button
+          onClick={logoutRequest}
+          className="hover:text-sky-700 text-lg font-semibold"
+        >
+          logout
+        </button>
       </Menu>
       <ToastContainer />
     </div>
