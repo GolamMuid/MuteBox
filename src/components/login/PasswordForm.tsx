@@ -85,6 +85,7 @@ export function PasswordForm() {
 								id="current password"
 								placeholder="current password"
 								type={showOldPassword ? "text" : "password"}
+								className="pr-8"
 								{...register("oldPassword", {
 									required: true,
 									minLength: 5,
@@ -121,6 +122,7 @@ export function PasswordForm() {
 								id="new password"
 								placeholder="new password"
 								type={showNewPassword ? "text" : "password"}
+								className="pr-8"
 								{...register("newPassword", {
 									required: true,
 									minLength: 5,

@@ -103,6 +103,7 @@ export function LoginForm() {
 								id="password"
 								placeholder="••••••••"
 								type={showPassword ? "text" : "password"}
+								className="pr-8"
 								{...register("password", {
 									required: true,
 									minLength: 5,

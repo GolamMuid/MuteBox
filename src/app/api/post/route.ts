@@ -46,7 +46,10 @@ export async function GET(request: NextRequest) {
 			const decodedToken: any = jwt.verify(tokenValue, process.env.JWT_SECRET);
 
 			if (!decodedToken || !decodedToken.userId) {
-				return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+				return NextResponse.json(
+					{ error: "Invalid token", status: 401 },
+					{ status: 401 }
+				);
 			}
 
 			// ? Token is valid, proceed to fetch posts
@@ -56,7 +59,10 @@ export async function GET(request: NextRequest) {
 		} else {
 			// ? Token cookie is missing
 
-			return NextResponse.json({ error: "Token is missing" }, { status: 401 });
+			return NextResponse.json(
+				{ error: "Token is missing", status: 401 },
+				{ status: 401 }
+			);
 		}
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });
