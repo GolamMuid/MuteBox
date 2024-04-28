@@ -85,7 +85,7 @@ export const HoverEffect = ({
             >
               <IoMdArrowBack /> back
             </button>
-            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200 break-words">
               {messageDetails?.subject}
             </p>
 
@@ -98,7 +98,7 @@ export const HoverEffect = ({
               </span>
             </button>
 
-            <p className="text-lg text-neutral-900 dark:text-neutral-400 mt-4">
+            <p className="text-lg text-neutral-900 dark:text-neutral-400 mt-4 break-words">
               {messageDetails?.message}
             </p>
           </div>
@@ -123,7 +123,7 @@ export const Card = ({
       )}
     >
       <div className="relative z-50">
-        <div className="p-4">{children}</div>
+        <div className="p-4 break-words">{children}</div>
       </div>
     </div>
   );
@@ -137,7 +137,9 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-zinc-200  tracking-wide mt-4", className)}>
+    <h4
+      className={cn("text-zinc-200  tracking-wide mt-4 break-words", className)}
+    >
       {children}
     </h4>
   );
@@ -158,7 +160,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-50 tracking-wide leading-relaxed text-lg font-bold",
+        "mt-8 text-zinc-50 tracking-wide leading-relaxed text-lg font-bold break-words",
         className
       )}
     >
