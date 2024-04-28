@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { Label } from "../ui/label";
