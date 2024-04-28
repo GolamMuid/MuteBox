@@ -10,12 +10,12 @@ connect();
 
 export async function GET(request: NextRequest) {
 	const param = useParams();
-	console.log("🚀 ~ GET ~ param:", param);
+	// console.log("🚀 ~ GET ~ param:", param);
 
 	try {
 		const cookies = request.cookies as any; // Type assertion
 
-		console.log(request.body);
+		// console.log(request.body);
 
 		// ? Check if cookies are available and token cookie exists
 

@@ -10,8 +10,6 @@ export async function POST(request: NextRequest) {
 	try {
 		const cookies = request.cookies as any; // Type assertion
 
-		console.log(request);
-
 		// ? Check if cookies are available and token cookie exists
 
 		if (cookies && cookies._parsed && cookies._parsed.has("token")) {

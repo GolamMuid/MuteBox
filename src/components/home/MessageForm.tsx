@@ -26,7 +26,6 @@ export function MessageForm() {
 	} = useForm<IFormInput>();
 
 	const onSubmit = (data: IFormInput) => {
-		console.log("data", data);
 		setIsLoading(true);
 		fetch(`/api/post`, {
 			method: "POST",
@@ -39,8 +38,6 @@ export function MessageForm() {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
-
 				if (data.success === true) {
 					toast.success("Message sent successfully!", {
 						position: "top-left",
