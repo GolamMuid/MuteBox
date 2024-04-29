@@ -11,7 +11,7 @@ function Navbar({ className }: { className?: string }) {
   const router = useRouter();
   const logoutRequest = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/logout", {
+      const response = await fetch("/api/logout", {
         method: "GET",
       })
         .then((res) => {
