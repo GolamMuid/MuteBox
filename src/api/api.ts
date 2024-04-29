@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookie from "js-cookie";
 
 //? Get ALL Post
 
@@ -8,10 +7,15 @@ export const getALLPost = async () => {
 		const response = await axios.get(`/api/post`);
 		return response.data;
 	} catch (error: any) {
-		// console.log(error.response.data.error);
-		if (error?.response?.data?.error === "invalid signature") {
-			console.log("111");
-			Cookie.remove("token");
+		console.log(error);
+		if (
+			error?.response?.data?.error === "invalid signature" ||
+			error?.response?.data?.error === "invalid token" ||
+			error?.response?.data?.error === "jwt expired"
+		) {
+			const response = await axios.get(`/api/logout`);
+			window.location.href = "/login";
+			return response;
 		}
 	}
 };
