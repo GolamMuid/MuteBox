@@ -83,6 +83,7 @@ export function MessageForm() {
               {...register("subject", {
                 required: true,
                 minLength: 5,
+                pattern: /[A-Za-z]/,
               })}
             />
             {errors?.subject?.type === "required" && (
@@ -96,6 +97,11 @@ export function MessageForm() {
                 Subject must be at least 5 characters long
               </p>
             )}
+            {errors?.subject?.type === "pattern" && (
+              <p className="text-xs text-red-700">
+                Subject must contain at least one letter
+              </p>
+            )}
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
@@ -106,6 +112,7 @@ export function MessageForm() {
               {...register("message", {
                 required: true,
                 minLength: 10,
+                pattern: /[A-Za-z]/,
               })}
             />
             {errors?.message?.type === "required" && (
@@ -116,6 +123,11 @@ export function MessageForm() {
             {errors?.message?.type === "minLength" && (
               <p className="text-xs text-red-700">
                 Message must be at least 10 characters long
+              </p>
+            )}
+            {errors?.message?.type === "pattern" && (
+              <p className="text-xs text-red-700">
+                Message must contain at least one letter
               </p>
             )}
           </LabelInputContainer>
