@@ -43,7 +43,7 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu>
-        <div className="flex gap-4">
+        <div className="flex gap-6">
           <Link
             href="/admin/password"
             className="hover:text-sky-700 text-lg font-semibold"

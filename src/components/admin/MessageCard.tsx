@@ -12,7 +12,7 @@ export function MessageCard() {
   });
 
   return (
-    <div className="container mx-auto px-8 mt-16">
+    <div className="container mx-auto px-8 mt-16 max-md:mt-24">
       {isLoading ? (
         <div className="h-screen flex justify-center items-center">
           <RingLoader color="#36d7b7" size={200} />
