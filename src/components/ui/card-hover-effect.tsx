@@ -90,7 +90,7 @@ export const HoverEffect = ({
 				{/* <DialogTrigger asChild>
         <Button variant="outline">Edit Profile</Button>
       </DialogTrigger> */}
-				<DialogContent className="sm:max-w-[800px] sm:max-h-[800px] overflow-y-auto">
+				<DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
 					<DialogHeader>
 						<DialogTitle>
 							<p className="text-base sm:text-xl text-black mt-2 mb-2 break-words">

@@ -5,7 +5,7 @@ import { SparklesCore } from "../ui/sparkles";
 export function SparklesPreviewLogin() {
 	return (
 		<div className="h-[60vh] w-full bg-white flex flex-col items-center justify-center overflow-hidden rounded-md">
-			<h1 className="text-[10vh] leading-[14vh] font-bold text-center text-black relative z-20">
+			<h1 className="text-6xl lg:text-[72px] leading-[14vh] font-bold text-center text-black relative z-20">
 				Mute Box
 			</h1>
 			<div className="w-full h-[20vh] relative">
