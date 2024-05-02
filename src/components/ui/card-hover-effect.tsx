@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import moment from "moment";
-import { IoMdArrowBack } from "react-icons/io";
 
 import {
 	Dialog,
@@ -45,7 +44,7 @@ export const HoverEffect = ({
 			{/* {showDetails ? ( */}
 			<div
 				className={cn(
-					"grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10 max-md:mt-10",
+					"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 max-md:mt-10",
 					className
 				)}
 			>
@@ -53,7 +52,7 @@ export const HoverEffect = ({
 					<div
 						// href={item?.link}
 						key={item?._id}
-						className="relative group  block p-2 h-full w-full  cursor-pointer"
+						className="relative group  block p-2 h-full w-full cursor-pointer"
 						onMouseEnter={() => setHoveredIndex(idx)}
 						onMouseLeave={() => setHoveredIndex(null)}
 						onClick={() => handleCardClick(item)}
@@ -175,7 +174,7 @@ export const CardTitle = ({
 }) => {
 	return (
 		<h4
-			className={cn("text-zinc-200  tracking-wide mt-4 break-words", className)}
+			className={cn("text-zinc-200 tracking-wide mt-4 break-words", className)}
 		>
 			{children}
 		</h4>
